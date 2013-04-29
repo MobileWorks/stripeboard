@@ -24,8 +24,8 @@ $(document).ready(function (){
     };
 
     // build graph
-    var graph = new Rickshaw.Graph({
-      element: document.querySelector('#chart'),
+    var customer_graph = new Rickshaw.Graph({
+      element: document.querySelector('#customer-chart'),
       width: 600,
       height: 575,
       renderer: 'line',
@@ -36,19 +36,19 @@ $(document).ready(function (){
       }]
     });
 
-    graph.renderer.unstack = true;
-    graph.render();
+    customer_graph.renderer.unstack = true;
+    customer_graph.render();
 
     var hoverDetail = new Rickshaw.Graph.HoverDetail({
-      graph: graph,
+      graph:customer_graph,
     });
 
     var xAxis = new Rickshaw.Graph.Axis.Time({
-        graph:graph,
+        graph:customer_graph,
     });
 
     var yAxis = new Rickshaw.Graph.Axis.Y({
-        graph:graph,
+        graph:customer_graph,
     });
 
     xAxis.render();
