@@ -24,8 +24,22 @@ $(document).ready(function (){
     };
 
     // build graph
-    var graph = new Rickshaw.Graph({
-      element: document.querySelector('#chart'),
+    var customer_graph = new Rickshaw.Graph({
+      element: document.querySelector('#customer-chart'),
+      width: 600,
+      height: 575,
+      renderer: 'line',
+      series: [{
+          name: 'Customers',
+          color: 'slategrey',
+          data: customers
+      }]
+    });
+
+
+    // build graph
+    var revenue_graph = new Rickshaw.Graph({
+      element: document.querySelector('#revenue-chart'),
       width: 600,
       height: 575,
       renderer: 'line',
@@ -33,18 +47,43 @@ $(document).ready(function (){
           name: 'Monthly Revenue',
           color: 'steelblue',
           data: revenue
-        }, {
-          name: 'Customers',
-          color: 'slategrey',
-          data: customers
-      }]
+        }]
     });
 
-    graph.render();
-    var hoverDetail = new Rickshaw.Graph.HoverDetail({
-      graph: graph,
+    customer_graph.render();
+    revenue_graph.render();
+    
+    var hoverDetail_customer = new Rickshaw.Graph.HoverDetail({
+      graph:customer_graph,
     });
+
+    var hoverDetail_revenue = new Rickshaw.Graph.HoverDetail({
+      graph:revenue_graph,
+    });
+    
+    var xAxis_customer = new Rickshaw.Graph.Axis.Time({
+        graph:customer_graph,
+    });
+
+    
+    var xAxis_revenue = new Rickshaw.Graph.Axis.Time({
+        graph:revenue_graph,
+    });
+    
+    var yAxis_customer = new Rickshaw.Graph.Axis.Y({
+        graph:customer_graph,
+    });
+
+    var yAxis_revenue = new Rickshaw.Graph.Axis.Y({
+        graph:revenue_graph,
+    });
+    
+    xAxis_customer.render();
+    yAxis_customer.render();
+
+    xAxis_revenue.render();
+    yAxis_revenue.render();
+
   };
-
   $.getJSON(jsonUrl, render);
 });
