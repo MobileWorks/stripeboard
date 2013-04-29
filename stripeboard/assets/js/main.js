@@ -28,7 +28,7 @@ $(document).ready(function (){
       element: document.querySelector('#chart'),
       width: 600,
       height: 575,
-      renderer: 'line',
+      renderer: 'bar',
       series: [{
           name: 'Monthly Revenue',
           color: 'steelblue',
@@ -40,6 +40,7 @@ $(document).ready(function (){
       }]
     });
 
+    graph.renderer.unstack = true;
     graph.render();
     var hoverDetail = new Rickshaw.Graph.HoverDetail({
       graph: graph,
