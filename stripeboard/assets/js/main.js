@@ -28,12 +28,8 @@ $(document).ready(function (){
       element: document.querySelector('#chart'),
       width: 600,
       height: 575,
-      renderer: 'bar',
+      renderer: 'line',
       series: [{
-          name: 'Monthly Revenue',
-          color: 'steelblue',
-          data: revenue
-        }, {
           name: 'Customers',
           color: 'slategrey',
           data: customers
@@ -42,10 +38,22 @@ $(document).ready(function (){
 
     graph.renderer.unstack = true;
     graph.render();
+
     var hoverDetail = new Rickshaw.Graph.HoverDetail({
       graph: graph,
     });
-  };
 
+    var xAxis = new Rickshaw.Graph.Axis.Time({
+        graph:graph,
+    });
+
+    var yAxis = new Rickshaw.Graph.Axis.Y({
+        graph:graph,
+    });
+
+    xAxis.render();
+    yAxis.render();
+
+  };
   $.getJSON(jsonUrl, render);
 });
